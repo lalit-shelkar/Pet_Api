@@ -17,9 +17,7 @@ app.get("/doctorData",(req,res)=>{
 
  app.post("/doctorData",(req,res)=>{
     console.log("workin !!!");
-    res.status(200).json({
-        message:"workingg"
-    })
+    res.status(200).send('Doctor data received successfully');
 });
 
 app.listen(port,()=>{
