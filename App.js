@@ -1,6 +1,6 @@
 const express = require("express");
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
+//const bodyParser = require('body-parser');
+//app.use(bodyParser.json());
 const app=express();
 const port=3000;
 const doctorData=require("./resources/doctorData");
