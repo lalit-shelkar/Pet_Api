@@ -12,6 +12,7 @@ app.get("/",(req,res)=>{
 });
 
 app.get("/doctorData",(req,res)=>{
+    doctorData=doctorData;
      res.send(doctorData);
  });
 
