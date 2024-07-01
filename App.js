@@ -16,8 +16,13 @@ app.get("/doctorData",(req,res)=>{
  });
 
  app.post("/doctorData",(req,res)=>{
-    console.log("workin !!!");
-    res.status(200).send('Doctor data received successfully');
+    console.log("Received doctor data:");
+    console.log(req.body); // Assuming req.body is parsed JSON data
+
+    // Example: Store data in an array (you should use a database in production)
+    doctorData.push(req.body);
+
+    res.status(200).send("Doctor data received successfully");
 });
 
 app.listen(port,()=>{
