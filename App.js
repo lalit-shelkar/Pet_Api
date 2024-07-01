@@ -13,8 +13,8 @@ app.get("/doctorData",(req,res)=>{
      res.send(doctorData);
  });
 
- app.get("/doctorData2",(req,res)=>{
-    res.send(doctorData);
+ app.post("/doctorData",(req,res)=>{
+    data.append({"name":"new name"})
 });
 
 app.listen(port,()=>{
