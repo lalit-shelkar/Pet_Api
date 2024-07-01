@@ -16,7 +16,10 @@ app.get("/doctorData",(req,res)=>{
  });
 
  app.post("/doctorData",(req,res)=>{
-    data.append({"name":"new name"})
+    console.log("workin !!!");
+    res.status(200).json({
+        message:"workingg"
+    })
 });
 
 app.listen(port,()=>{
