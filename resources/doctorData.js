@@ -9,7 +9,8 @@ const data=  [
       "about":"Dr. Maria Naiis is a highly experienced veterinarian with 11 years of dedicated practice, showcasing a pro...",
       "Location":"Aanvii Hearing Solutions",
       "Available" : "true",
-      "specializes" :"Piles Specialist", 
+      "specializes" :"Piles Specialist",
+      "contact":"1234567890" 
     },
   ];
     
