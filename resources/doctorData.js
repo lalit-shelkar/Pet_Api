@@ -21,7 +21,7 @@ const data=  [
       "tags" : ["Proctology", "Urology", "Laparoscopy", "Vascular", "Aesthetics" ],
       "about":"Dr. Maria Naiis is a highly experienced veterinarian with 11 years of dedicated practice, showcasing a pro...",
       "location":"mumbai",
-      "available" : "true",
+      "available" : "false",
       "specializes" :"Piles Specialist",
       "contact":"1234567890" 
     },
