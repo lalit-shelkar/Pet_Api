@@ -4,7 +4,7 @@ const app=express();
 app.use(express.json());
 app.use(upload({
     useTempFiles : true,
-    tempFileDir : '/temp/',
+    tempFileDir : '/tmp/',
 }));
 
 const {createProduct} = require("./controller/product");
