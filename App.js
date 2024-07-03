@@ -20,7 +20,7 @@ const cloudinaryConnect = require("./config/cloudinary");//to store at media ser
 cloudinaryConnect.cloudinaryConnect();
 
 app.get("/",(req,res)=>{
-    res.send("Welcome to pet care App");
+    res.send("Welcome to pet care App v2");
 });
 app.post("/createProduct",createProduct);
 
