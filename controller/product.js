@@ -34,3 +34,29 @@ exports.createProduct = async(req,res)=>{
         });
     }
 }
+
+exports.getProduct = async(req,res)=>{
+    try{
+        
+        //fetching data from body
+       // const {name,rating,price,category}=req.body;
+        //const img=req.files.productImage;
+
+        const response =await Product.find({});
+        
+        res.status(200).json({
+            success:true,
+            data:response,
+            message:'Data fetch successfully'
+        });
+    }
+    catch(err){
+        console.error(err);
+        console.log(err);
+        res.status(500).json({
+            success:false,
+           // data:response,
+            message:'data is not fetched successfully'
+        });
+    }
+}

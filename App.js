@@ -7,7 +7,7 @@ app.use(upload({
     tempFileDir : '/tmp/',
 }));
 
-const {createProduct} = require("./controller/product");
+const {createProduct, getProduct} = require("./controller/product");
 const port=3000;
 const doctorData=require("./resources/doctorData");
 
@@ -23,6 +23,7 @@ app.get("/",(req,res)=>{
     res.send("Welcome to pet care App v2");
 });
 app.post("/createProduct",createProduct);
+app.post("/getProduct",getProduct);
 
 app.get("/doctorData",(req,res)=>{
     
