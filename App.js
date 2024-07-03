@@ -23,7 +23,7 @@ app.get("/",(req,res)=>{
     res.send("Welcome to pet care App v2");
 });
 app.post("/createProduct",createProduct);
-app.post("/getProduct",getProduct);
+app.get("/getProduct",getProduct);
 
 app.get("/doctorData",(req,res)=>{
     
