@@ -1,15 +1,28 @@
 const express = require("express");
-//const bodyParser = require('body-parser');
-//app.use(bodyParser.json());
+const upload = require("express-fileupload");
 const app=express();
+app.use(express.json());
+app.use(upload({
+    useTempFiles : true,
+    tempFileDir : '/temp/',
+}));
+
+const {createProduct} = require("./controller/product");
 const port=3000;
 const doctorData=require("./resources/doctorData");
-app.use(express.json());
 
+
+//connect to database
+const dbConnect = require("./config/database");
+dbConnect();
+
+const cloudinaryConnect = require("./config/cloudinary");//to store at media server
+cloudinaryConnect.cloudinaryConnect();
 
 app.get("/",(req,res)=>{
     res.send("Welcome to pet care App");
 });
+app.post("/createProduct",createProduct);
 
 app.get("/doctorData",(req,res)=>{
     
