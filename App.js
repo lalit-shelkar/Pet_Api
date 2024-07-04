@@ -8,6 +8,8 @@ app.use(upload({
 }));
 
 const {createProduct, getProduct} = require("./controller/product");
+const {createDoctor, getDoctor} = require("./controller/doctor");
+
 const port=3000;
 const doctorData=require("./resources/doctorData");
 
@@ -23,19 +25,11 @@ app.get("/",(req,res)=>{
     res.send("Welcome to pet care App v2");
 });
 app.post("/createProduct",createProduct);
+app.post("/createDoctor",createDoctor);
+
 app.get("/getProduct",getProduct);
+app.get("/getDoctor",getDoctor);
 
-app.get("/doctorData",(req,res)=>{
-    
-     res.send(doctorData);
- });
-
- app.post("/doctorData",(req,res)=>{
-   
-    doctorData.push(req.body);
-
-    res.status(200).send("Doctor data received successfully");
-});
 
 app.listen(port,()=>{
     console.log("App is running")

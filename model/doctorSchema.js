@@ -1,0 +1,79 @@
+const mongoose = require("mongoose");
+
+const doctorSchema = new mongoose.Schema(
+    {
+        firestoreId:{
+            type:String,
+            required:true,
+            unique: true
+        },
+        name:{
+            type:String,
+            required:true,
+            maxLength:20
+        },
+        experience:{
+            type:String,
+            required:true,
+            maxLength:20
+        },
+        qualification:{
+            type:String,
+            required:true,
+            maxLength:20
+        },
+        rating:{
+            type:Number,
+            required:true,
+            min: 0,
+            max: 5
+        },
+        img:{
+            type:String,
+            required:true,
+        },
+        tags:{
+            type:[String],
+            required:true,
+            maxLength:10
+        },
+        about:{
+            type:String,
+            required:true,
+            maxLength:50
+        },
+        location:{
+            type:String,
+            required:true,
+        },
+        specializes:{
+            type:String,
+            required:true,
+            maxLength:50
+        },
+        contact:{
+            type:Number,
+            required:true,
+        },
+        price:{
+            type:Number,
+            required:true,
+        },
+        available:{
+            type:Boolean,
+            required:true,
+        },
+        availableDays:{
+            type:[Date],
+            required:true,
+        },
+        patients:[
+            {
+                type:mongoose.Schema.Types.ObjectId,
+                //required:true,
+                ref:"patientSchema"
+            }
+        ],
+    }
+);
+module.exports = mongoose.model("doctorSchema",doctorSchema);

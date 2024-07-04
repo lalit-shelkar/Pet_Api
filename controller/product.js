@@ -1,12 +1,6 @@
 
 const Product = require("../model/productSchema");
-const cloudinary = require("cloudinary").v2;
-
-async function uploadToCloudinary(file,folder){
-    const options = {folder};
-    options.resource_type = "auto";
-    return await cloudinary.uploader.upload(file.tempFilePath ,options);
-}
+const {uploadToCloudinary}=require("../util/uploadToCloudinary");
 
 exports.createProduct = async(req,res)=>{
     try{
