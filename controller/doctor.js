@@ -38,7 +38,7 @@ exports.isDoctorExist = async (req,res)=>{
 
 exports.createDoctor = async(req,res)=>{
     try{
-        const { firestoreId, name, experience, rating, tags, about, location, specializes, contact, price, available, availableDays } = req.body;
+        const { firestoreId, name, experience, rating, tags, about, location, specializes, contact, price, available, availableDays ,qualification} = req.body;
         const doctorImage=req.files.doctorImage;
         if(!firestoreId){
             res.status(500).json({
@@ -48,7 +48,7 @@ exports.createDoctor = async(req,res)=>{
         }
         const img_res= await uploadToCloudinary(doctorImage,"petguardian/doctor");
         const parseAvailableDays= JSON.parse(availableDays);
-        const response= await Doctor.create({firestoreId, name, experience, rating, img:img_res.secure_url,tags, about, location, specializes, contact, price, available, availableDays:parseAvailableDays });
+        const response= await Doctor.create({firestoreId, name, experience, rating, img:img_res.secure_url,tags, about, location, qualification,specializes, contact, price, available, availableDays:parseAvailableDays });
         res.status(200).json({
             status:"sucess doctor template creted successfully",
             data:response
