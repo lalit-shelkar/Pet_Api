@@ -1,14 +1,22 @@
 const Patient=require("../model/patientSchema");
-
+const Doctor=require("../model/doctorSchema");
 exports.createPatient = async(req,res)=>{
     try{
         
-        //fetching data from body
-        const {name,patientId,appointmentDay}=req.body;
-        const parsedAppointmentDay = JSON.parse(appointmentDay);
+    
+        const {name,patientId,appointmentDay,doctorId}=req.body;
 
         
-        response = await Patient.create({name,patientId,appointmentDay:parsedAppointmentDay});
+        response = await Patient.create({name,patientId,appointmentDay});
+        const updatedDoctorDetails = await Doctor.findOneAndUpdate(
+            {firestoreId:doctorId},
+            {$push:{patients:patientId}},
+            {new:true}
+            ).populate({
+				path: "patients",
+			})
+			.exec();
+
        
         res.status(200).json({
             success:true,
@@ -23,6 +31,24 @@ exports.createPatient = async(req,res)=>{
             success:false,
            // data:response,
             message:'Entry not created successfully'
+        });
+    }
+}
+
+exports.getPatient = async(req,res)=>{
+    try{
+        const response= await Patient.find({});
+        res.status(200).json({
+            status:"sucess",
+            data:response
+        });
+
+    }catch(err){
+        console.error(err);
+        res.status(500).json({
+            status:"failed",
+            message:"INTERNAL SERVER ERROR",
+            response:err,
         });
     }
 }

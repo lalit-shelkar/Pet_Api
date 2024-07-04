@@ -9,6 +9,8 @@ app.use(upload({
 
 const {createProduct, getProduct} = require("./controller/product");
 const {createDoctor, getDoctor} = require("./controller/doctor");
+const { createPatient ,getPatient} = require("./controller/patient");
+
 
 const port=3000;
 const doctorData=require("./resources/doctorData");
@@ -26,9 +28,11 @@ app.get("/",(req,res)=>{
 });
 app.post("/createProduct",createProduct);
 app.post("/createDoctor",createDoctor);
+app.post("/createPatient",createPatient);
 
 app.get("/getProduct",getProduct);
 app.get("/getDoctor",getDoctor);
+app.get("/getPatient",getPatient);
 
 
 app.listen(port,()=>{

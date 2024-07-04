@@ -46,6 +46,7 @@ exports.createDoctor = async(req,res)=>{
                 message:"firestore id missing",
             });
         }
+        //const date=
 
         const tag=tags.split(',');
         const img_res= await uploadToCloudinary(doctorImage,"petguardian/doctor");
