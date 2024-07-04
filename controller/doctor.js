@@ -14,7 +14,7 @@ exports.isDoctorExist = async (req,res)=>{
         }
 
         const exist= await Doctor.findOne({firestoreId});
-        if(!exist){
+        if(exist){
             res.status(400).json({
                 message:"doctor alerdy created his template",
                 flag:true
