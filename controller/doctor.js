@@ -46,9 +46,11 @@ exports.createDoctor = async(req,res)=>{
                 message:"firestore id missing",
             });
         }
+
+        const tag=tags.split(',');
         const img_res= await uploadToCloudinary(doctorImage,"petguardian/doctor");
         const parseAvailableDays= JSON.parse(availableDays);
-        const response= await Doctor.create({firestoreId, name, experience, rating, img:img_res.secure_url,tags, about, location, qualification,specializes, contact, price, available, availableDays:parseAvailableDays });
+        const response= await Doctor.create({firestoreId, name, experience, rating, img:img_res.secure_url,tags:tag, about, location, qualification,specializes, contact, price, available, availableDays:parseAvailableDays });
         res.status(200).json({
             status:"sucess doctor template creted successfully",
             data:response
