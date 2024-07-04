@@ -6,11 +6,12 @@ exports.createPatient = async(req,res)=>{
     
         const {name,patientId,appointmentDay,doctorId}=req.body;
 
-        
+        const patientIdString= patientId.toString();
+        console.log(patientIdString);
         response = await Patient.create({name,patientId,appointmentDay});
         const updatedDoctorDetails = await Doctor.findOneAndUpdate(
             {firestoreId:doctorId},
-            {$push:{patients:patientId}},
+            {$push:{patients:response._id}},
             {new:true}
             ).populate({
 				path: "patients",
@@ -29,7 +30,7 @@ exports.createPatient = async(req,res)=>{
         console.log(err);
         res.status(500).json({
             success:false,
-           // data:response,
+           data:response,
             message:'Entry not created successfully'
         });
     }
