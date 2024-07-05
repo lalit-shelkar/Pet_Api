@@ -12,14 +12,17 @@ exports.isDoctorExist = async (req,res)=>{
                 message:"firestore id missing",
             });
         }
-
+        console.log("this is fire",firestoreId,typeof(firestoreId));
         const exist= await Doctor.findOne({firestoreId});
+        console.log("exist ",typeof(exist),exist);
         if(exist){
+            console.log("exist");
             res.status(400).json({
                 message:"doctor alerdy created his template",
                 flag:true
             });
         }else{
+            console.log("not");
             res.status(200).json({
                 message:"doctor not alerdy created his template",
                 flag:false
@@ -51,7 +54,7 @@ exports.createDoctor = async(req,res)=>{
         const tag=tags.split(',');
         const img_res= await uploadToCloudinary(doctorImage,"petguardian/doctor");
         const parseAvailableDays= JSON.parse(availableDays);
-        const response= await Doctor.create({firestoreId, name, experience, rating, img:img_res.secure_url,tags:tag, about, location, qualification,specializes, contact, price, available, availableDays:availableDays });
+        const response= await Doctor.create({firestoreId, name, experience, rating, img:img_res.secure_url,tags:tag, about, location, qualification,specializes, contact, price, available, availableDays:parseAvailableDays });
         res.status(200).json({
             status:"sucess doctor template creted successfully",
             data:response
