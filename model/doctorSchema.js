@@ -10,17 +10,17 @@ const doctorSchema = new mongoose.Schema(
         name:{
             type:String,
             required:true,
-            maxLength:20
+          
         },
         experience:{
             type:String,
             required:true,
-            maxLength:20
+         
         },
         qualification:{
             type:String,
             required:true,
-            maxLength:20
+           
         },
         rating:{
             type:Number,
@@ -35,12 +35,12 @@ const doctorSchema = new mongoose.Schema(
         tags:{
             type:[String],
             required:true,
-            maxLength:10
+           
         },
         about:{
             type:String,
             required:true,
-            maxLength:50
+           
         },
         location:{
             type:String,
@@ -49,7 +49,7 @@ const doctorSchema = new mongoose.Schema(
         specializes:{
             type:String,
             required:true,
-            maxLength:50
+           
         },
         contact:{
             type:Number,
