@@ -60,11 +60,11 @@ const doctorSchema = new mongoose.Schema(
             required:true,
         },
         available:{
-            type:Boolean,
+            type:String,
             required:true,
         },
         availableDays:{
-            type:[Date],
+            type:[String],
             required:true,
         },
         patients:[
