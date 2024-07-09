@@ -67,6 +67,10 @@ const doctorSchema = new mongoose.Schema(
             type:[String],
             required:true,
         },
+        time:{
+            type:String,
+            required:true
+        },
         patients:[
             {
                 type:mongoose.Schema.Types.ObjectId,

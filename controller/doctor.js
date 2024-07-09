@@ -54,7 +54,7 @@ exports.createDoctor = async(req,res)=>{
         
         const tag=tags.split(',');
       //  const img_res= await uploadToCloudinary(doctorImage,"petguardian/doctor");
-       // const parseAvailableDays= JSON.parse(availableDays);
+       const parseAvailableDays= availableDays.split(' ');
         const response= await Doctor.create({firestoreId, name, experience, rating, img:doctorImage,tags:tag, about, location, qualification,specializes, contact, price, available, availableDays });
         return res.status(200).json({
             status:"sucess doctor template creted successfully",
