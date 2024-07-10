@@ -43,8 +43,7 @@ exports.createDoctor = async(req,res)=>{
     try{
         const { firestoreId, name, experience, rating, tags, about,doctorImage, location, specializes, contact, price, available, availableDays ,qualification} = req.body;
        // const doctorImage=req.files.doctorImage;
-       console.log(req.body);
-       console.log(req.body.firestoreId,contact,price);
+      
         if(!firestoreId){
            return res.status(401).json({
                 status:"failed",
@@ -55,7 +54,17 @@ exports.createDoctor = async(req,res)=>{
         const tag=tags.split(',');
       //  const img_res= await uploadToCloudinary(doctorImage,"petguardian/doctor");
        const parseAvailableDays= availableDays.split(' ');
-        const response= await Doctor.create({firestoreId, name, experience, rating, img:doctorImage,tags:tag, about, location, qualification,specializes, contact, price, available, availableDays });
+       console.log(parseAvailableDays);
+       const timeAraay=["10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM"]
+       const arr=[];
+       for(let i=0;i<parseAvailableDays.length;i++){
+            let arrnew=[];
+            arrnew.push(parseAvailableDays[i]);
+            arrnew.push(timeAraay);
+            arr.push(arrnew);
+       }
+       console.log(arr);
+        const response= await Doctor.create({firestoreId, name, experience, rating, img:doctorImage,tags:tag, about, location, qualification,specializes, contact, price, available, availableDays:arr });
         return res.status(200).json({
             status:"sucess doctor template creted successfully",
             data:response
