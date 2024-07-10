@@ -64,6 +64,7 @@ exports.createDoctor = async(req,res)=>{
             arr.push(arrnew);
        }
        console.log(arr);
+       
         const response= await Doctor.create({firestoreId, name, experience, rating, img:doctorImage,tags:tag, about, location, qualification,specializes, contact, price, available, availableDays:arr });
         return res.status(200).json({
             status:"sucess doctor template creted successfully",

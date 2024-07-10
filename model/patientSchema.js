@@ -11,10 +11,22 @@ const patientSchema = new mongoose.Schema(
             type:String,
             required:true,
         },
-        appointmentDay:{
-            type:Date,
+        contact:{
+            type:Number,
             required:true,
         },
+        petType:{
+            type:String,
+            required:true,
+        },
+        appointmentDay:{
+            type:String,
+            required:true,
+        },
+        appointmentTime:{
+            type:String,
+            require:true
+        }
     }
 );
 

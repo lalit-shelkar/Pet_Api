@@ -4,11 +4,11 @@ exports.createPatient = async(req,res)=>{
     try{
         
     
-        const {name,patientId,appointmentDay,doctorId}=req.body;
+        const {patientId,doctorId,name,contact,petType,appointmentDay,appointmentTime}=req.body;
 
         const patientIdString= patientId.toString();
         console.log(patientIdString);
-        response = await Patient.create({name,patientId,appointmentDay});
+        response = await Patient.create({patientId,name,contact,petType,appointmentDay,appointmentTime});
         const updatedDoctorDetails = await Doctor.findOneAndUpdate(
             {firestoreId:doctorId},
             {$push:{patients:response._id}},
@@ -17,6 +17,9 @@ exports.createPatient = async(req,res)=>{
 				path: "patients",
 			})
 			.exec();
+
+       await  removeTimeFromSchedule(doctorId,appointmentDay,appointmentTime);
+      
 
        
         res.status(200).json({
@@ -53,6 +56,37 @@ exports.getPatient = async(req,res)=>{
         });
     }
 }
+
+async function removeTimeFromSchedule(firestoreId, date, time) {
+    try {
+      const doctor = await Doctor.findOne({ firestoreId });
+  
+      if (doctor) {
+        const availableDays = doctor.availableDays;
+  
+        for (let i = 0; i < availableDays.length; i++) {
+          if (availableDays[i][0] === date) {
+            const times = availableDays[i][1];
+            const timeIndex = times.indexOf(time);
+  
+            if (timeIndex > -1) {
+              times.splice(timeIndex, 1);
+            }
+  
+            break;
+          }
+        }
+  
+        doctor.markModified('availableDays');
+        await doctor.save();
+        console.log("Time removed successfully");
+      } else {
+        console.log("Doctor not found");
+      }
+    } catch (err) {
+      console.error('Error removing time:', err);
+    }
+  }
 
 /*exports.isPatientExist = async (req,res)=>{
     try{
