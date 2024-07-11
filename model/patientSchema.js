@@ -26,6 +26,10 @@ const patientSchema = new mongoose.Schema(
         appointmentTime:{
             type:String,
             require:true
+        },
+        status:{
+            type:String,
+            default:"pending"
         }
     }
 );
