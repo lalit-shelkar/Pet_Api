@@ -4,11 +4,11 @@ exports.createPatient = async(req,res)=>{
     try{
         
     
-        const {patientId,doctorId,name,contact,petType,appointmentDay,appointmentTime}=req.body;
+        const {patientId,doctorId,name,contact,petName,petType,petAge,symptoms,appointmentDay,appointmentTime}=req.body;
 
         const patientIdString= patientId.toString();
         console.log(patientIdString);
-        response = await Patient.create({patientId,name,contact,petType,appointmentDay,appointmentTime});
+        response = await Patient.create({patientId,name,contact,petName,petType,petAge,symptoms,appointmentDay,appointmentTime});
         const updatedDoctorDetails = await Doctor.findOneAndUpdate(
             {firestoreId:doctorId},
             {$push:{patients:response._id}},
