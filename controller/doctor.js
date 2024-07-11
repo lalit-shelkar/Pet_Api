@@ -85,7 +85,7 @@ exports.getDoctor = async(req,res)=>{
     try{
         const response= await Doctor.find({}).populate({
             path:"patients"
-        });
+        }).sort({ _id: -1 });
         res.status(200).json({
             status:"sucess",
             data:response
