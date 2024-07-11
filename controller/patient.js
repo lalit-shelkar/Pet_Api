@@ -49,11 +49,14 @@ exports.getPatient = async(req,res)=>{
         .exec();
        console.log(doctor);
        const patient=doctor[0]?.patients;
+       const sortP=patients.sort((a, b) => {
+        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      });
 
         console.log(patient);
         res.status(200).json({
             status:"sucess",
-            data:patient    
+            data:sortP   
          });
 
     }catch(err){
