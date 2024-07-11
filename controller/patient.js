@@ -48,7 +48,7 @@ exports.getPatient = async(req,res)=>{
         })
         .exec();
        console.log(doctor);
-        const patient=doctor[0]?.patients.sort({createdAt:-1});
+       const patient=doctor[0]?.patients;
 
         console.log(patient);
         res.status(200).json({
