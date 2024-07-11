@@ -100,3 +100,6 @@ exports.getDoctor = async(req,res)=>{
         });
     }
 }
+
+
+

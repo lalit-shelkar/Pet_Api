@@ -41,11 +41,19 @@ exports.createPatient = async(req,res)=>{
 
 exports.getPatient = async(req,res)=>{
     try{
-        const response= await Patient.find({});
+        const doctorId=req.query.doctorId;
+        console.log(doctorId);
+        const doctor= await Doctor.find({firestoreId:doctorId}).populate({
+            path: "patients",
+        })
+        .exec();
+        console.log(doctor);
+        const patient=doctor[0]?.patients
+        console.log(patient);
         res.status(200).json({
             status:"sucess",
-            data:response
-        });
+            data:patient    
+         });
 
     }catch(err){
         console.error(err);
@@ -88,6 +96,24 @@ async function removeTimeFromSchedule(firestoreId, date, time) {
     }
   }
 
+  exports.changePatientStatus = async(req,res)=>{
+    try{
+        const {status}=req.body;
+        //const response= await Pat
+        res.status(200).json({
+            status:"sucess",
+            data:response
+        });
+
+    }catch(err){
+        console.error(err);
+        res.status(500).json({
+            status:"failed",
+            message:"INTERNAL SERVER ERROR",
+            response:err,
+        });
+    }
+}
 /*exports.isPatientExist = async (req,res)=>{
     try{
         const { firestoreId ,} = req.body;
