@@ -15,7 +15,19 @@ const patientSchema = new mongoose.Schema(
             type:Number,
             required:true,
         },
+        petName:{
+            type:String,
+            required:true,
+        },
         petType:{
+            type:String,
+            required:true,
+        },
+        petAge:{
+            type:Number,
+            required:true,
+        },
+        symptoms:{
             type:String,
             required:true,
         },
