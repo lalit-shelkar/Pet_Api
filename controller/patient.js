@@ -47,8 +47,9 @@ exports.getPatient = async(req,res)=>{
             path: "patients",
         })
         .exec();
-        console.log(doctor);
-        const patient=doctor[0]?.patients
+       console.log(doctor);
+        const patient=doctor[0]?.patients.sort({createdAt:-1});
+
         console.log(patient);
         res.status(200).json({
             status:"sucess",
