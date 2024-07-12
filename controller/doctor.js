@@ -151,9 +151,6 @@ exports.addDay = async(req,res)=>{
         {availableDays:avd},
         {new:true}
     );
-
-
-       
         
         return res.status(200).json({
             status:"sucess doctor template creted successfully",
