@@ -8,7 +8,7 @@ app.use(upload({
 }));
 
 const {createProduct, getProduct} = require("./controller/product");
-const {createDoctor, getDoctor, isDoctorExist} = require("./controller/doctor");
+const {createDoctor, getDoctor, isDoctorExist, getDoctorById} = require("./controller/doctor");
 const { createPatient ,getPatient, changeStatus} = require("./controller/patient");
 
 
@@ -33,6 +33,8 @@ app.post("/isDoctorExist",isDoctorExist);
 
 app.get("/getProduct",getProduct);
 app.get("/getDoctor",getDoctor);
+app.get("/getDoctorById",getDoctorById);
+
 app.get("/getPatient",getPatient);
 app.get("/changeStatus",changeStatus);
 

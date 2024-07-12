@@ -101,5 +101,28 @@ exports.getDoctor = async(req,res)=>{
     }
 }
 
+exports.getDoctorById = async(req,res)=>{
+    try{
+        const doctorId=req.query.doctorId;
+        console.log(doctorId);
+        const doctor= await Doctor.find({firestoreId:doctorId}).populate({
+            path: "patients",
+        })
+        .exec();
+        res.status(200).json({
+            status:"sucess",
+            data:doctor
+        });
+
+    }catch(err){
+        console.error(err);
+        res.status(500).json({
+            status:"failed",
+            message:"INTERNAL SERVER ERROR",
+            response:err,
+        });
+    }
+}
+
 
 
