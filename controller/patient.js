@@ -122,9 +122,10 @@ async function removeTimeFromSchedule(firestoreId, date, time) {
 exports.changeStatus = async(req,res)=>{
     try{
         const patientId=req.query.patientId;
+        console.log(patientId);
         //console.log(doctorId);
         const patient= await Patient.findOneAndUpdate(
-            {firestoreId:patientId},
+            {patientId:patientId},
             {status:"confirmed"}
         );
         console.log(patient);
