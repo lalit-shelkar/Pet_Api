@@ -191,11 +191,10 @@ exports.removeDay = async(req,res)=>{
             break;
         }
     }
-    console.log(avd);
+  
     
     avd.splice(index, 1);
-    console.log(index);
-    console.log(avd);
+    
 
 
 
