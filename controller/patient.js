@@ -126,7 +126,8 @@ exports.changeStatus = async(req,res)=>{
         //console.log(doctorId);
         const patient= await Patient.findOneAndUpdate(
             {patientId:patientId},
-            {status:"confirmed"}
+            {status:"confirmed"},
+            {new:true}
         );
         console.log(patient);
         res.status(200).json({
