@@ -183,7 +183,7 @@ exports.removeDay = async(req,res)=>{
     const doctor= await Doctor.find({firestoreId:doctorId});
     let avd=doctor[0]?.availableDays;
 
-    const index=-1;
+    let index=-1;
     for(let i=0;avd.length;i++){
         let inarr=avd[i];
         if(inarr[0]==day){
@@ -191,7 +191,13 @@ exports.removeDay = async(req,res)=>{
             break;
         }
     }
-    avd.remove(index);
+    console.log(avd);
+    
+    avd.splice(index, 1);
+    console.log(index);
+    console.log(avd);
+
+
 
     const doctorNewResponse= await Doctor.findOneAndUpdate(
         {firestoreId:doctorId},
