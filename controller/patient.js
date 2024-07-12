@@ -47,16 +47,16 @@ exports.getPatient = async(req,res)=>{
             path: "patients",
         })
         .exec();
-       console.log(doctor);
-       const patient=doctor[0]?.patients;
-       const sortP=patients.sort((a, b) => {
-        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-      });
-
+        console.log(doctor);
+        const patient=doctor[0]?.patients
+        let s=[];
+        s=patient.sort((a, b) => {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+          });
         console.log(patient);
         res.status(200).json({
             status:"sucess",
-            data:sortP   
+            data:s
          });
 
     }catch(err){
