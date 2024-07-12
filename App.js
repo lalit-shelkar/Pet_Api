@@ -9,7 +9,7 @@ app.use(upload({
 
 const {createProduct, getProduct} = require("./controller/product");
 const {createDoctor, getDoctor, isDoctorExist} = require("./controller/doctor");
-const { createPatient ,getPatient} = require("./controller/patient");
+const { createPatient ,getPatient, changeStatus} = require("./controller/patient");
 
 
 const port=3000;
@@ -34,7 +34,7 @@ app.post("/isDoctorExist",isDoctorExist);
 app.get("/getProduct",getProduct);
 app.get("/getDoctor",getDoctor);
 app.get("/getPatient",getPatient);
-
+app.get("/changeStatus",changeStatus);
 
 app.listen(port,()=>{
     console.log("App is running")

@@ -100,53 +100,44 @@ async function removeTimeFromSchedule(firestoreId, date, time) {
     }
   }
 
-  exports.changePatientStatus = async(req,res)=>{
+//   exports.changePatientStatus = async(req,res)=>{
+//     try{
+//         const {status}=req.body;
+//         //const response= await Pat
+//         res.status(200).json({
+//             status:"sucess",
+//             data:response
+//         });
+
+//     }catch(err){
+//         console.error(err);
+//         res.status(500).json({
+//             status:"failed",
+//             message:"INTERNAL SERVER ERROR",
+//             response:err,
+//         });
+//     }
+// }
+
+exports.changeStatus = async(req,res)=>{
     try{
-        const {status}=req.body;
-        //const response= await Pat
+        const patientId=req.query.patientId;
+        //console.log(doctorId);
+        const patient= await Patient.findOneAndUpdate(
+            {firestoreId:patientId},
+            {status:"confirmed"}
+        );
+        console.log(patient);
         res.status(200).json({
-            status:"sucess",
-            data:response
-        });
+            status:"sucess"
+         });
 
     }catch(err){
         console.error(err);
         res.status(500).json({
             status:"failed",
-            message:"INTERNAL SERVER ERROR",
+            message:err,
             response:err,
         });
     }
 }
-/*exports.isPatientExist = async (req,res)=>{
-    try{
-        const { firestoreId ,} = req.body;
-        if(!firestoreId){
-            res.status(500).json({
-                status:"failed",
-                message:"firestore id missing",
-            });
-        }
-
-        const exist= await Patient.findOne({firestoreId});
-        if(exist){
-            res.status(400).json({
-                status:"success",
-                message:"patient already booked his appointment",
-                flag:true
-            });
-        }else{
-            res.status(200).json({
-                message:"doctor alerdy created his template",
-                flag:false
-            });
-        }
-    }catch(err){
-        console.error(err);
-        res.status(500).json({
-            status:"failed",
-            message:"INTERNAL SERVER ERROR",
-            response:err,
-        });
-    }
-}*/
