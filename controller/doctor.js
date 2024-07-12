@@ -126,3 +126,46 @@ exports.getDoctorById = async(req,res)=>{
 
 
 
+exports.addDay = async(req,res)=>{
+    try{
+        const doctorId = req.query.doctorId;
+        const day=req.query.day;
+       // const doctorImage=req.files.doctorImage;
+      
+        if(!doctorId || !day){
+           return res.status(401).json({
+                status:"failed",
+                message:"rquired fiels missing",
+            });
+        }
+        
+    const doctor= await Doctor.find({firestoreId:doctorId});
+    let avd=doctor[0]?.availableDays;
+    const timeAraay=["10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM"]
+    let arr=[];
+    arr.push(day);
+    arr.push(timeAraay);
+    avd.push(arr);
+    const doctorNewResponse= await Doctor.findOneAndUpdate(
+        {firestoreId:doctorId},
+        {availableDays:avd},
+        {new:true}
+    );
+
+
+       
+        
+        return res.status(200).json({
+            status:"sucess doctor template creted successfully",
+            data:doctorNewResponse
+        });
+
+    }catch(err){
+        console.error(err);
+       return  res.status(400).json({
+            status:"failedd",
+            message:"INTERNAL SERVER ERROR",
+            response:err,
+        });
+    }
+}
