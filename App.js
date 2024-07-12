@@ -8,7 +8,7 @@ app.use(upload({
 }));
 
 const {createProduct, getProduct} = require("./controller/product");
-const {createDoctor, getDoctor, isDoctorExist, getDoctorById, addDay} = require("./controller/doctor");
+const {createDoctor, getDoctor, isDoctorExist, getDoctorById, addDay, removeDay} = require("./controller/doctor");
 const { createPatient ,getPatient, changeStatus} = require("./controller/patient");
 
 
@@ -39,6 +39,7 @@ app.get("/getPatient",getPatient);
 app.get("/changeStatus",changeStatus);
 
 app.get("/addDay",addDay);
+app.get("/removeDay",removeDay);
 
 app.listen(port,()=>{
     console.log("App is running")

@@ -166,3 +166,50 @@ exports.addDay = async(req,res)=>{
         });
     }
 }
+
+exports.removeDay = async(req,res)=>{
+    try{
+        const doctorId = req.query.doctorId;
+        const day=req.query.day;
+       // const doctorImage=req.files.doctorImage;
+      
+        if(!doctorId || !day){
+           return res.status(401).json({
+                status:"failed",
+                message:"rquired fiels missing",
+            });
+        }
+        
+    const doctor= await Doctor.find({firestoreId:doctorId});
+    let avd=doctor[0]?.availableDays;
+
+    const index=-1;
+    for(let i=0;avd.length;i++){
+        let inarr=avd[i];
+        if(inarr[0]==day){
+            index=i;
+            break;
+        }
+    }
+    avd.remove(index);
+
+    const doctorNewResponse= await Doctor.findOneAndUpdate(
+        {firestoreId:doctorId},
+        {availableDays:avd},
+        {new:true}
+    );
+        
+        return res.status(200).json({
+            status:"sucess doctor template creted successfully",
+            data:doctorNewResponse
+        });
+
+    }catch(err){
+        console.error(err);
+       return  res.status(400).json({
+            status:"failedd",
+            message:"INTERNAL SERVER ERROR",
+            response:err,
+        });
+    }
+}
